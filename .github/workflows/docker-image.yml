@@ -53,8 +53,8 @@ jobs:
         port: ${{ secrets.NCP_PORT }}
         script: |
           sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          sudo docker stop $(sudo docker ps -a -q) # 기존에 돌던 것 제거
-          sudo docker rm -f $(sudo docker ps -a -q) # 기존꺼 삭제
+          sudo docker stop $(sudo docker ps -a -q)
+          sudo docker rm -f $(sudo docker ps -a -q)
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ vars.APP_NAME }}
           sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/${{ vars.APP_NAME }}
           sudo docker image prune -f # 실제 실행중인 것 외에 제거
